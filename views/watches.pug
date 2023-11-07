@@ -1,0 +1,24 @@
+extends layout
+block content
+    div(class="container-fluid")
+        h1= title
+    - let results=[{watch_brand:"FOSSIL",watch_model:"BH1430",watch_price:2000},{watch_brand:"Rolex",watch_model:"BB1621",watch_price:5500},{watch_brand:"Michael kors",watch_model:"VD6281",watch_price:4000}]
+        div(class="row")
+            each form,item in results
+                div(class = "col-sm-4 bg-success" onclick=`buy(${item})`) #{form.watch_brand}              
+                div(class = "col-sm-4 bg-success" onclick=`buy(${item})`) #{form.watch_model}                
+                div(class = "col-sm-4 bg-success" onclick=`buy(${item})`) #{form.watch_price}
+                hr
+    
+    br
+    h5= 'buy'
+    div(class="container-fluid")
+      each watches,index in results
+        div(class="row", onclick=`buy(${index})`)
+          div(class="col-sm-1") <br>watches #{index}: #{watches.watch_brand} model:#{watches.watch_model} price:#{watches.watch_price}
+
+    script.
+        function buy(itemNo)
+        {
+            alert(`You purchased Item ${itemNo+1}`)
+        }
