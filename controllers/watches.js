@@ -68,26 +68,30 @@ exports.watches_update_put = function(req, res) {
  res.send('NOT IMPLEMENTED: watches update PUT' + req.params.id);
 };*/
 // Handle watches update form on PUT.
+
+//put logic
+
+
 exports.watches_update_put = async function(req, res) {
-console.log(`update on id ${req.params.id} with body
-${JSON.stringify(req.body)}`)
-try {
-let toUpdate = await watches.findById( req.params.id)
-// Do updates of properties
-if(req.body.watches_type)
-toUpdate.watches_brand = req.body.watches_brand;
-if(req.body.watches_model) toUpdate.watches_model = req.body.watches_model;
-res.send(toUpdate.watches_model);
-if(req.body.watches_price) toUpdate.watches_price = req.body.watches_price;
-let result = await toUpdate.save();
-console.log("Success " + result)
-res.send(result)
-} catch (err) {
-res.status(500)
-res.send(`{"error": ${err}: Update for id ${req.params.id}
-failed`);
-}
-};
+    console.log(`update on id ${req.params.id} with body
+    ${JSON.stringify(req.body)}`)
+    try {
+    let toUpdate = await watches.findById( req.params.id)
+    // Do updates of properties
+    if(req.body.watch_brand)
+    toUpdate.watch_brand = req.body.watch_brand;
+    if(req.body.watch_model) toUpdate.watch_model = req.body.watch_model;
+    if(req.body.watch_price) toUpdate.watch_price = req.body.watch_price;
+    let result = await toUpdate.save();
+    console.log("Sucess " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": ${err}: Update for id ${req.params.id}
+    failed`);
+    }
+    };
+
 // VIEWS
 // Handle a show all view
 exports.watches_view_all_Page = async function(req, res) {
