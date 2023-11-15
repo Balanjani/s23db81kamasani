@@ -24,6 +24,19 @@ exports.watches_delete = async function(req, res) {
    }
    };
    
+// Handle a show one view with id specified by query
+exports.watches_view_one_Page = async function(req, res) {
+   console.log("single view for id " + req.query.id)
+   try{
+   result = await watches.findById( req.query.id)
+   res.render('watchesdetail',
+   { title: 'Watches Detail', toShow: result });
+   }
+   catch(err){
+   res.status(500)
+   res.send(`{'error': '${err}'}`);
+   }
+   };
 
    // for a specific watches.
 exports.watches_detail = async function(req, res) {
@@ -97,7 +110,7 @@ exports.watches_update_put = async function(req, res) {
     if(req.body.watch_model) toUpdate.watch_model = req.body.watch_model;
     if(req.body.watch_price) toUpdate.watch_price = req.body.watch_price;
     let result = await toUpdate.save();
-    console.log("Sucess " + result)
+    console.log("Success " + result)
     res.send(result)
     } catch (err) {
     res.status(500)
