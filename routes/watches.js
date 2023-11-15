@@ -13,3 +13,6 @@ router.get('/detail', watches_controllers.watches_view_one_Page);
 
 /* GET create costume page */
 router.get('/create', watches_controllers.watches_create_Page);
+
+/* GET create update page */
+router.get('/update', watches_controllers.watches_update_Page);
