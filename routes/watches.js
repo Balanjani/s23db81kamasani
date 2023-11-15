@@ -16,3 +16,7 @@ router.get('/create', watches_controllers.watches_create_Page);
 
 /* GET create update page */
 router.get('/update', watches_controllers.watches_update_Page);
+
+/* GET delete watches page */
+router.get('/delete', watches_controllers.watches_delete_Page);
+
