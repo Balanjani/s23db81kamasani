@@ -23,6 +23,21 @@ exports.watches_delete = async function(req, res) {
    res.send(`{"error": Error deleting ${err}}`);
    }
    };
+
+// Handle building the view for creating a watches.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.watches_create_Page = function(req, res) {
+   console.log("create view")
+   try{
+   res.render('watchescreate', { title: 'watches Create'});
+   }
+   catch(err){
+   res.status(500)
+   res.send(`{'error': '${err}'}`);
+   }
+   };
+   
    
 // Handle a show one view with id specified by query
 exports.watches_view_one_Page = async function(req, res) {
