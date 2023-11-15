@@ -11,7 +11,21 @@ thewatches = await watches.find();
  } 
 };
 
-   // for a specific Costume.
+// Handle watches delete on DELETE.
+exports.watches_delete = async function(req, res) {
+   console.log("delete " + req.params.id)
+   try {
+   result = await watches.findByIdAndDelete( req.params.id)
+   console.log("Removed " + result)
+   res.send(result)
+   } catch (err) {
+   res.status(500)
+   res.send(`{"error": Error deleting ${err}}`);
+   }
+   };
+   
+
+   // for a specific watches.
 exports.watches_detail = async function(req, res) {
 console.log("detail" + req.params.id)
 try {
@@ -59,9 +73,9 @@ exports.watches_create_post = async function(req, res) {
 };*/
 
 // Handle watch delete form on DELETE.
-exports.watches_delete = function(req, res) {
+/*exports.watches_delete = function(req, res) {
  res.send('NOT IMPLEMENTED: watches delete DELETE ' + req.params.id);
-};
+};*/
 /*
 // Handle watch update form on PUT.
 exports.watches_update_put = function(req, res) {
