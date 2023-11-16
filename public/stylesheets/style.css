@@ -1,13 +1,19 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 20px; /* Reduced padding for the body */
+  font: 16px "Arial", sans-serif; /* Changed font and increased font size */
 }
 
 a {
-  color: #ff8400;
+  color: #3366cc; /* Changed link color to a shade of blue */
+  text-decoration: none; /* Removed underline from links */
 }
+
 .watchesAttr {
-  background-color: aquamarine;
-  width: 120px;
-  }
-  
+  background-color: #993399; /* Changed background color to a shade of purple */
+  width: 150px; /* Increased width of elements with class watchesAttr */
+  padding: 10px; /* Added padding to elements with class watchesAttr */
+  margin-bottom: 10px; /* Added margin at the bottom of elements with class watchesAttr */
+  color: #fff; /* Changed text color to white */
+  font-weight: bold; /* Made the text bold */
+}
+

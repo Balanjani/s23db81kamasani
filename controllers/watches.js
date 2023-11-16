@@ -30,7 +30,7 @@ exports.watches_delete = async function(req, res) {
 exports.watches_create_Page = function(req, res) {
    console.log("create view")
    try{
-   res.render('watchescreate', { title: 'watches Create'});
+   res.render('watchescreate', { title: 'Watches Create'});
    }
    catch(err){
    res.status(500)
@@ -74,9 +74,9 @@ exports.watches_create_post = async function(req, res) {
     // Even though bodies can be in many different formats, we will be picky
     // and require that it be a json object
     // {"costume_type":"goat", "cost":12, "size":"large"}
-    document.watch_brand = req.body.brand;
-    document.watch_model = req.body.model;
-    document.watch_price = req.body.price;
+    document.watch_brand = req.body.watch_brand;
+    document.watch_model = req.body.watch_model;
+    document.watch_price = req.body.watch_price;
     try{
     let result = await document.save();
     res.send(result);
@@ -93,7 +93,7 @@ exports.watches_update_Page = async function(req, res) {
    console.log("update view for item "+req.query.id)
    try{
    let result = await watches.findById(req.query.id)
-   res.render('watchesupdate', { title: 'watches Update', toShow: result });
+   res.render('watchesupdate', { title: 'Watches Update', toShow: result });
    }
    catch(err){
    res.status(500)

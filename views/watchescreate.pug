@@ -2,6 +2,7 @@ extends layout
 
 block content
   h1= title
+  
   form(id='watchesForm', action="/resource/watches", method="POST")
     div.form-group
       label.watchesAttr(for='watch_brand') watches brand

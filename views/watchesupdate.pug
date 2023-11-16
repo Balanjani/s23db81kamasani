@@ -2,45 +2,51 @@ extends layout
 
 block content
   h1= title
-  - let watchesid = toShow._id
-  - let watch_brand = toShow.watch_brand
-  - let watch_model = toShow.watch_model
-  - let watch_price = toShow.watch_price
 
-  div.row(class='mb-2')
-    div.mr-1 ID is
-    div #{watchesid}
+  if (toShow == null)
+    h2 No instance to delete
+  else
+  
+    - let watchesid = toShow._id
+    - let watch_brand = toShow.watch_brand
+    - let watch_model = toShow.watch_model
+    - let watch_price = toShow.watch_price
 
-  - let actionid = "/resource/watches/" + watchesid
-  form(id='watchesForm', action=actionid, method="PUT")
-    div.form-group
-      label.watchesAttr(for='watch_brand') Watches Brand
-      input#watch_brand(type='text', name='watch_brand', value=watch_brand)
-    
-    div.form-group
-      label.watchesAttr(for='watch_model') Watches Model
-      input#watch_model(type='text', name='watch_model', value=watch_model)
-    
-    div.form-group
-      label.watchesAttr(for='watch_price') Watches Price
-      input#watch_price(type='number', name='watch_price', value=watch_price)
-    
-    input(type="submit")
+    div.row(class='mb-2')
+      div.mr-1 ID is
+      div #{watchesid}
 
-  script.
-    document.forms['watchesForm'].addEventListener('submit', (event) => {
-      event.preventDefault();
-      // TODO do something here to show the user that the form is being submitted
-      fetch(event.target.action, {
-        method: 'PUT',
-        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-      }).then((resp) => {
-        return resp.json(); // or resp.text() or whatever the server sends
-      }).then((body) => {
-        alert("Update succeeded");
-        // TODO handle the body
-      }).catch((error) => {
-        // TODO handle the error
-        alert("Update failed: " + error);
+    - let actionid = "/resource/watches/" + watchesid
+    form(id='watchesForm', action=actionid, method="PUT")
+      div.form-group
+        label.watchesAttr(for='watch_brand') Watches Brand
+        input#watch_brand(type='text', name='watch_brand', value=watch_brand)
+      
+      div.form-group
+        label.watchesAttr(for='watch_model') Watches Model
+        input#watch_model(type='text', name='watch_model', value=watch_model)
+      
+      div.form-group
+        label.watchesAttr(for='watch_price') Watches Price
+        input#watch_price(type='number', name='watch_price', value=watch_price)
+      
+      input(type="submit")
+    
+
+    script.
+      document.forms['watchesForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO do something here to show the user that the form is being submitted
+        fetch(event.target.action, {
+          method: 'PUT',
+          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Update succeeded");
+          // TODO handle the body
+        }).catch((error) => {
+          // TODO handle the error
+          alert("Update failed: " + error);
+        });
       });
-    });
