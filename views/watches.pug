@@ -1,24 +1,30 @@
 extends layout
+ 
 block content
-    div(class="container-fluid")
-        h1= title
-    - let result=results
-        div(class="row")
-            each form,item in result
-                div(class = "col-sm-4 bg-success" onclick=`buy(${item})`) #{form.watch_brand}              
-                div(class = "col-sm-4 bg-success" onclick=`buy(${item})`) #{form.watch_model}                
-                div(class = "col-sm-4 bg-success" onclick=`buy(${item})`) #{form.watch_price}
-                hr
-    
-    br
-    h5= 'buy'
-    div(class="container-fluid")
-      each watches,index in results
-        div(class="row", onclick=`buy(${index})`)
-          div(class="col-sm-1") <br>watches #{index}: #{watches.watch_brand} model:#{watches.watch_model} price:#{watches.watch_price}
-
-    script.
-        function buy(itemNo)
-        {
-            alert(`You purchased Item ${itemNo+1}`)
-        }
+  h1= title
+  head
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
+ 
+  .container-fluid
+    .row
+      - let results1
+      each watch, index in results
+        .col-sm-4.mb-3
+          .card.clickable-card(onclick=`buy(${index})`, style=`background-color: green; color: white;`)
+            .card-body
+              h4.card-title= watch.name
+              p.card-text watch_brand: #{watch.watch_brand}
+              p.card-text watch_model: #{watch.watch_model}
+              p.card-text watch_price: #{watch.watch_price}
+             
+              button.btn.btn-danger.btn-sm(delete-btn, onclick=`deleteFruit('${watch._id}')`) Update
+ 
+  script.
+    function buy(i) {
+      //alert(`You purchased Item ${i+1}`);
+    }
+ 
+    function deleteFruit(id) {
+      // Add logic to delete the watch with the given id
+      window.location.href='/watches/update/?id='+id;
+    }
