@@ -1,30 +1,50 @@
 extends layout
- 
+
 block content
+  div(class="container-fluid")
+
   h1= title
   head
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
- 
+   link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
+
   .container-fluid
     .row
       - let results1
       each watch, index in results
         .col-sm-4.mb-3
-          .card.clickable-card(onclick=`buy(${index})`, style=`background-color: green; color: white;`)
-            .card-body
-              h4.card-title= watch.name
-              p.card-text watch_brand: #{watch.watch_brand}
-              p.card-text watch_model: #{watch.watch_model}
-              p.card-text watch_price: #{watch.watch_price}
-             
-              button.btn.btn-danger.btn-sm(delete-btn, onclick=`deleteFruit('${watch._id}')`) Update
- 
+         .card.clickable-card(onclick=`buy(${index})`, style=`background-color: green; color: pink;`)
+         .card-body
+           h4.card-title= watch.name
+           p.card-text watch_brand: #{watch.watch_brand}
+           p.card-text watch_model: #{watch.watch_model}
+           p.card-text watch_price: #{watch.watch_price}
+           button.btn.btn-secondary.btn-sm(delete-btn, onclick=`updateWatch('${watch._id}')`) Update
+           // Button to go to create page
+           button.btn.btn-primary.btn-sm(delete-btn, onclick=`createWatch('${watch._id}')`) Create
+           // Button to go to detail page
+           button.btn.btn-info.btn-sm(delete-btn, onclick=`detailWatch('${watch._id}')`) Detail
+           // Button to go to delete page
+           button.btn.btn-danger.btn-sm(delete-btn, onclick=`deleteWatch('${watch._id}')`) Delete
+         hr
+
   script.
     function buy(i) {
       //alert(`You purchased Item ${i+1}`);
     }
- 
-    function deleteFruit(id) {
+
+    function updateWatch(id) {
       // Add logic to delete the watch with the given id
-      window.location.href='/watches/update/?id='+id;
+      window.location.href='/watches/update/?id=' + id;
+    }
+    function createWatch(id) {
+      // Add logic to delete the watch with the given id
+      window.location.href='/watches/create/?id=' + id;
+    }
+    function detailWatch(id) {
+      // Add logic to delete the watch with the given id
+      window.location.href='/watches/detail/?id=' + id;
+    }
+    function deleteWatch(id) {
+      // Add logic to delete the watch with the given id
+      window.location.href='/watches/delete/?id=' + id;
     }
