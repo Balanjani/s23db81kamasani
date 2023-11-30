@@ -1,5 +1,6 @@
 var express = require('express');
 const watches_controllers= require('../controllers/watches');
+var passport= require('passport');
 var router = express.Router();
 
 const secured = (req, res, next) => {
